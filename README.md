@@ -1,7 +1,8 @@
 SFWRTECH 4SA3 Software Architecture
 
 Date: December 06, 2024
- 
+
+
 Introduction
 
 The project component of the course will involve proposing, designing, documenting, implementing and presenting a software architecture.  
