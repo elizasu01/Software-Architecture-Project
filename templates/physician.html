@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physician Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Search Results for Physicians</h1>
+    </header>
+
+    <main>
+        <section class="physician-list">
+            {% if physicians %}
+                <h2>Physician List:</h2>
+                <ul>
+                    {% for physician in physicians %}
+                    <li class="physician-item">
+                        <strong>Provider Name:</strong> {{ physician.first_name }} {{ physician.last_name }}<br>
+                        <strong>Specialty:</strong> {{ physician.specialty }}<br>
+                        <strong>Facility Name:</strong> {{ physician.facility_name }}<br>
+                        <strong>Zip Code:</strong> {{ physician.zip_code }}<br>
+                        <strong>Telephone Number:</strong> {{ physician.telephone_number }}<br>
+                        <a href="{{ url_for('book_appointment', location=physician.zip_code, physician_name=physician.first_name + ' ' + physician.last_name, facility_name=physician.facility_name, telephone_number=physician.telephone_number, specialty=physician.specialty) }}" class="button">Book an Appointment</a>
+
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No physicians found for this ZIP code.</p>
+            {% endif %}
+        </section>
+
+        <section class="new-search-location">
+            <h2>Want a new search of location?</h2>
+            <a href="/" class="button-inline">Yes</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Take Care Your Health. All rights reserved.</p>
+    </footer>
+</body>
+</html>

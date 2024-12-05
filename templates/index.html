@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Care Your Health</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to "Take Care Your Health"</h1>
+    </header>
+
+    <main>
+        <section class="about-us">
+            <h2>About Us</h2>
+            <p>
+                We assist patients in comparing the costs of physician visits across the USA. 
+                Patients can check fees in their chosen location and, if costs are too high, 
+                search for alternative providers with potentially lower costs nationwide. 
+                This tool aims to improve decision-making around healthcare services by offering 
+                comparative cost data.
+            </p>
+        </section>
+
+        <section class="search">
+            <h2>Find Affordable Healthcare</h2>
+            <form method="POST" action="/search">
+                <label for="location">Enter Your Location:</label>
+                <input type="text" id="location" name="location" placeholder="City or ZIP Code" required>
+                
+                <label for="radius">Search Radius (in miles):</label>
+                <select id="radius" name="radius">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                </select>
+
+                <button type="submit" class="button">Search</button>
+            </form>
+        </section>
+
+        <section class="comparison">
+            <h2>Comparison Cost</h2>
+            <form method="GET" action="/analyze">
+                <table class="form-table">
+                    <tr>
+                        <th><label for="location1">Enter Location 1 (ZIP Code):</label></th>
+                        <td><input type="text" id="location1" name="location1" required></td>
+                    </tr>
+                    <tr>
+                        <th><label for="location2">Enter Location 2 (ZIP Code):</label></th>
+                        <td><input type="text" id="location2" name="location2" required></td>
+                    </tr>
+                </table>
+                <button type="submit">Analyze</button>
+            </form>
+        </section>
+
+        <section class="appointments">
+            <h2>Want to check your appointments?</h2>
+            <a href="/check_appointments" class="button">Check Now</a>
+        </section>     
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Take Care Your Health. All rights reserved.</p>
+    </footer>
+</body>
+</html>

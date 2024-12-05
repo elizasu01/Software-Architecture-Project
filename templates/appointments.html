@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>All Appointments</h1>
+    </header>
+
+    <main>
+        <h2>Scheduled Appointments:</h2>
+        <ul>
+            {% for appointment in appointments %}
+            <li>
+                <strong>Patient Name:</strong> {{ appointment.patient_full_name }}<br>
+                <strong>Appointment Date:</strong> {{ appointment.appointment_date }}<br>
+                <strong>Doctor:</strong> {{ appointment.doctor_full_name }}<br>
+                <strong>Specialty:</strong> {{ appointment.specialty }}<br>
+                <strong>Facility:</strong> {{ appointment.facility_name }}<br>
+                <strong>Zip Code:</strong> {{ appointment.zip_code }}<br>
+                <strong>Status:</strong> {{ appointment.status }}<br>
+                <strong>Telephone:</strong> {{ appointment.telephone_number }}<br>
+            </li>
+            {% else %}
+            <p>No appointments available.</p>
+            {% endfor %}
+        </ul>
+
+        <section class="appointments">
+            <h2>Want to check your appointments?</h2>
+            <a href="/check_appointments" class="button">Check Now</a>
+        </section>  
+
+        <section class="new-search-location">
+            <h2>Want a new search of location?</h2>
+            <a href="/" class="button-inline">Yes</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Take Care Your Health. All rights reserved.</p>
+    </footer>
+</body>
+</html>

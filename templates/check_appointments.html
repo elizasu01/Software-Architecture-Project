@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Appointments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to "Take Care Your Health"</h1>
+    </header>
+
+    <main>
+        <section class="appointments">
+            <h2>Enter Your Details to Check Appointments</h2>
+
+            <form method="POST" action="/check_appointments">
+                <label for="patient_name">Patient Name:</label>
+                <input type="text" id="patient_name" name="patient_name" required>
+
+                <label for="patient_phone">Phone Number:</label>
+                <input type="text" id="patient_phone" name="patient_phone" required>
+
+                <button type="submit" class="button">Search</button>
+            </form>
+
+            {% if appointments %}
+            <h3>Your Appointments:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Appointment ID</th>
+                        <th>Patient Name</th>
+                        <th>Appointment Date</th>
+                        <th>Phone Number</th>
+                        <th>Physician</th>
+                        <th>Location</th>
+                        <th>Actions</th>  <!-- New column for buttons -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.appointment_id }}</td>
+                        <td>{{ appointment.patient_full_name }}</td>
+                        <td>{{ appointment.appointment_date }}</td>
+                        <td>{{ appointment.patient_phone_number }}</td>
+                        <td>{{ appointment.doctor_full_name }}</td>
+                        <td>{{ appointment.facility_name }}</td>
+                        <td>
+                            <!-- Reschedule Button -->
+                            <button class="button-inline" onclick="alert('Reschedule functionality coming soon!')">Reschedule</button>
+
+                            <!-- Delete Button -->
+                            <button class="button-inline" onclick="alert('Delete functionality coming soon!')">Delete</button>
+
+                            <!-- Feedback Button -->
+                            <button class="button-inline" onclick="alert('Delete functionality coming soon!')">Feedback</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% elif message %}
+            <p>{{ message }}</p>
+            {% endif %}
+        </section>     
+        <section class="new-search-location">
+            <h2>Want a new search of location?</h2>
+            <a href="/" class="button-inline">Yes</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Take Care Your Health. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

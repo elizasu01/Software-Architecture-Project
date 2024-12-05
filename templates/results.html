@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Search Results for Location: {{ result['location'] }}</h1>
+        <p>Search Radius: {{ result['radius'] }} miles</p>
+    </header>
+
+    <main>
+        <section class="pricing-info">
+            {% if result['message'] %}
+            <p>{{ result['message'] }}</p>
+            {% else %}
+            <h2>Pricing Information:</h2>
+            <ul>
+                {% for record in result['records'] %}
+                <li>
+                    <strong>Zip Code:</strong> {{ record.get('zip_code', 'N/A') }}<br>
+                    <strong>New Patient Pricing:</strong> Min: ${{ record.get('min_medicare_pricing_for_new_patient', 'N/A') }} | Max: ${{ record.get('max_medicare_pricing_for_new_patient', 'N/A') }}<br>
+                    <strong>Established Patient Pricing:</strong> Min: ${{ record.get('min_medicare_pricing_for_established_patient', 'N/A') }} | Max: ${{ record.get('max_medicare_pricing_for_established_patient', 'N/A') }}<br>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </section>
+
+        {% if result['records'] %}
+        <section class="search-physician">
+            <h2>Want to search a Physician?</h2>
+            <a href="/physician?location={{ result['location'] }}" class="button-inline">Yes</a>
+        </section>
+        {% endif %}
+
+        <section class="new-search-location">
+            <h2>Want a new search of location?</h2>
+            <a href="/" class="button-inline">Yes</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Take Care Your Health. All rights reserved.</p>
+    </footer>
+</body>
+</html>

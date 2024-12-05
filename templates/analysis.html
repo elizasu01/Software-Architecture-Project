@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Comparison</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Price Comparison Between Two Locations</h1>
+    </header>
+
+    <main>
+        <!-- Table displaying the data for two locations -->
+        <section class="pricing-info">
+            <h2>Pricing Information</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Zip Code: {{ result['location1'] }}</th>
+                        <th>Zip Code: {{ result['location2'] }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>New Patient Pricing:</strong><br>
+                            Min: ${{ result['records1'][0].get('min_medicare_pricing_for_new_patient', 'N/A') }}<br>
+                            Max: ${{ result['records1'][0].get('max_medicare_pricing_for_new_patient', 'N/A') }}
+                        </td>
+                        <td>
+                            <strong>New Patient Pricing:</strong><br>
+                            Min: ${{ result['records2'][0].get('min_medicare_pricing_for_new_patient', 'N/A') }}<br>
+                            Max: ${{ result['records2'][0].get('max_medicare_pricing_for_new_patient', 'N/A') }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Established Patient Pricing:</strong><br>
+                            Min: ${{ result['records1'][0].get('min_medicare_pricing_for_established_patient', 'N/A') }}<br>
+                            Max: ${{ result['records1'][0].get('max_medicare_pricing_for_established_patient', 'N/A') }}
+                        </td>
+                        <td>
+                            <strong>Established Patient Pricing:</strong><br>
+                            Min: ${{ result['records2'][0].get('min_medicare_pricing_for_established_patient', 'N/A') }}<br>
+                            Max: ${{ result['records2'][0].get('max_medicare_pricing_for_established_patient', 'N/A') }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Chart Section for Price Comparison -->
+        <section class="chart">
+            <h2>Price Comparison Chart</h2>
+            <canvas id="pricingChart"></canvas>
+            <script>
+                // Prepare the data for the chart
+                const data = {
+                    labels: ['New Patient Min', 'New Patient Max', 'Established Patient Min', 'Established Patient Max'],
+                    datasets: [{
+                        label: `Location 1 ({{ result['location1'] }})`,
+                        data: [
+                            {{ result['records1'][0].get('min_medicare_pricing_for_new_patient', 0) }},
+                            {{ result['records1'][0].get('max_medicare_pricing_for_new_patient', 0) }},
+                            {{ result['records1'][0].get('min_medicare_pricing_for_established_patient', 0) }},
+                            {{ result['records1'][0].get('max_medicare_pricing_for_established_patient', 0) }}
+                        ],
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: `Location 2 ({{ result['location2'] }})`,
+                        data: [
+                            {{ result['records2'][0].get('min_medicare_pricing_for_new_patient', 0) }},
+                            {{ result['records2'][0].get('max_medicare_pricing_for_new_patient', 0) }},
+                            {{ result['records2'][0].get('min_medicare_pricing_for_established_patient', 0) }},
+                            {{ result['records2'][0].get('max_medicare_pricing_for_established_patient', 0) }}
+                        ],
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                };
+
+                const config = {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                };
+
+                // Render the chart
+                const pricingChart = new Chart(
+                    document.getElementById('pricingChart'),
+                    config
+                );
+            </script>
+        </section>
+
+        <!-- Option for new search -->
+        <section class="new-search-location">
+            <h2>Want a new search of location?</h2>
+            <a href="/" class="button-inline">Yes</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Take Care Your Health. All rights reserved.</p>
+    </footer>
+</body>
+</html>

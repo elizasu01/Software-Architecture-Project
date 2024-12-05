@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Book Your Appointment</h1>
+    </header>
+
+    <main>
+        <section class="book_appointment">
+            <h2>Please provide your information</h2>
+
+            <form method="POST" action="/book_appointment">
+                <table class="form-table">
+                    <tr>
+                        <th><label for="patient_full_name">Full Name:</label></th>
+                        <td><input type="text" id="patient_full_name" name="patient_full_name" required></td>
+                    </tr>
+                    <tr>
+                        <th><label for="appointment_date">Appointment Date and Time:</label></th>
+                        <td><input type="datetime-local" id="appointment_date" name="appointment_date" required></td>
+                    </tr>
+                    <tr>
+                        <th><label for="patient_telephone_number">Telephone Number:</label></th>
+                        <td><input type="text" id="patient_telephone_number" name="patient_telephone_number" required></td>
+                    </tr>
+                    <tr>
+                        <th><label for="patient_email">Email:</label></th>
+                        <td><input type="email" id="patient_email" name="patient_email" required></td>
+                    </tr>
+                    <tr>
+                        <th><label for="physician_name">Physician Name:</label></th>
+                        <td><input type="text" id="physician_name" name="physician_name" value="{{ physician_name }}" readonly></td>
+                    </tr>
+                    <tr>
+                        <th><label for="location">Location (ZIP Code):</label></th>
+                        <td><input type="text" id="location" name="location" value="{{ location }}" readonly></td>
+                    </tr>
+                    <tr>
+                        <th><label for="facility_name">Facility Name:</label></th>
+                        <td><input type="text" id="facility_name" name="facility_name" value="{{ facility_name }}" readonly></td>
+                    </tr>
+                    <tr>
+                        <th><label for="specialty">Specialty:</label></th>
+                        <td><input type="text" id="specialty" name="specialty" value="{{ specialty }}" readonly></td>
+                    </tr>
+                </table>
+                <button type="submit">Book Appointment</button>
+            </form>
+        </section>
+
+        <br>
+        <section class="new-search-location">
+            <h2>Want a new search of location?</h2>
+            <a href="/" class="button-inline">Yes</a>
+        </section>
+    </main>
+</body>
+</html>

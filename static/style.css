@@ -1,0 +1,130 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Section Styles */
+section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+section h2 {
+    margin-top: 0;
+}
+
+section ul {
+    list-style: none;
+    padding: 0;
+}
+
+section li {
+    margin-bottom: 10px;
+}
+
+button, a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+button:hover, a.button:hover {
+    background-color: #45a049;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px; /* Add space above the footer */
+}
+
+/* Button beside the text */
+.button-inline {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;  /* Space between the text and the button */
+}
+
+.button-inline:hover {
+    background-color: #45a049;
+}
+
+/* Style for tables in forms */
+table.form-table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0;  /* Remove centering and set margin to 0 */
+    border-collapse: collapse;
+    margin-left: 0;  /* Align the table to the left */
+}
+
+table.form-table th, table.form-table td {
+    padding: 10px;
+    vertical-align: top;
+}
+
+table.form-table th {
+    width: 50%; /* Adjust as needed */
+    font-weight: bold;
+    text-align: left; /* Align labels to the left */
+}
+
+table.form-table td input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Chart Section */
+.chart {
+    max-width: 600px;  /* Set max width for the chart */
+    margin: 0 auto;    /* Center the chart */
+    padding: 20px;     /* Optional: adds some padding around the chart */
+    margin-left: 0;
+}
+
+#pricingChart {
+    width: 100% !important;   /* Make chart take full width of its container */
+    height: 300px !important; /* Adjust height for the chart */
+}

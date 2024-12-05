@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Successful</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Take Care Your Health</h1>
+    </header>
+
+    <main>
+        <section class="appointment-details">
+            <h2>Your appointment has been successfully booked. Thank you!</h2>
+        </section>
+
+        <section class="view-appointments">
+            <h2>Want to view your appointments?</h2>
+            <a href="/appointments" class="button-inline">Yes</a>
+        </section>
+
+        <section class="new-search-location">
+            <h2>Want a new search of location?</h2>
+            <a href="/" class="button-inline">Yes</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Take Care Your Health. All rights reserved.</p>
+    </footer>
+</body>
+</html>
